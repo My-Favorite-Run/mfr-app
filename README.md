@@ -5,6 +5,41 @@
 ### Development Requirements
 
 - The [expo installation page](https://docs.expo.io/get-started/installation/) has a short guide on getting the development tools setup
+  After you setup the tools:
+
+1. Run `git clone https://github.com/My-Favorite-Run/mfr-app` and it will create a new folder on your computer with all the code
+2. Run `cd mfr-app` to navigate into the folder
+3. Run `npm install`
+
+### Running through Expo Go
+
+- This is the fastest way to run the app
+- Run `expo start` and it should start a server
+- You can then use the Expo Go app to scan the qr code it shows
+
+### Building the App through expo servers
+
+- Here is the [guide to building an app](https://docs.expo.io/distribution/building-standalone-apps/) through the expo servers
+- Essentially just run `expo build:android --release-channel dev` or `expo build:ios --release-channel dev`
+  - For now, only the dev release channel is in use, but later we should add a `prod` release channel as well
+- You will see that building an app takes quite a bit of time, but if you want, you can build it locally (described below)
+- Also, you will not need to build a new app everytime you edit the code. Instead you can publish the edited app on the dev release channel (described below) and it will save a lot of time
+
+### Publishing Apps
+
+- When not modifying the `app.json` file or adding new packages, publishing the app is much faster than completely building the app
+- Run `expo publish --release-channel dev` to publish the developer-version of the app
+- Once published, you can tap on the "Update Dev App" button on the installed app on your phone/simulator to update the app
+- Learn more about the release channels [here](https://docs.expo.io/distribution/release-channels/)!
+
+### Building Apps Locally
+
+- Building apps locally is faster than building on expo servers, since expo servers have a waiting list. However, building apps locally takes a bit more setup and is completely optional.
+- Use [turtle-cli](https://docs.expo.io/distribution/turtle-cli/) if you want to build locally
+- Building an app is usually only required when changing the `app.json` file or when adding new modules/packages. In other cases, publishing the app is a much faster approach
+- When building an app with `turtle`, make sure to add a `--public-url` flag that points to the manifest
+  - For example I used the following command to build the app:
+  - `turtle build:android --keystore-path ./My-Favorite-Run.jks --keystore-alias QG15ZmF2b3JpdGVydW4vTXktRmF2b3JpdGUtUnVu -c ./app.json --public-url 'https://exp.host/@myfavoriterun/My-Favorite-Run/index.exp?release-channel=dev&sdkVersion=41.0.0'`
 
 ## APIs + Links:
 
