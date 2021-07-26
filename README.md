@@ -1,6 +1,7 @@
 # My Favorite Run App
 
 ## Running + Building App
+- I would highly suggest first understanding how a basic expo app works, so that this isn't too confusing
 
 ### Development Requirements
 
