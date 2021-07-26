@@ -2,8 +2,8 @@ import * as React from "react"
 import * as WebBrowser from 'expo-web-browser'
 import * as Google from 'expo-auth-session/providers/google'
 import { View, Button, Text, Alert } from 'react-native'
-import { getCalendarIds, getWeeklyEvents } from './apiHelpers'
-import RenderCalendarEvents from '../../components/RenderCalendarEvents'
+import { getCalendarIds, getWeeklyEvents } from './helpers'
+import { RenderCalendarEvents } from './components'
 import styles from './styles'
 
 WebBrowser.maybeCompleteAuthSession()

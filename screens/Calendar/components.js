@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, FlatList } from 'react-native'
 
 const momentFormat = "ddd, MMMM D [at] hh:mm A"
 
-export default function RenderCalendarEvents(props) {
+export function RenderCalendarEvents(props) {
 
     return (
         <View syle={styles.container}>

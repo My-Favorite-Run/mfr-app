@@ -5,7 +5,8 @@ import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
 
 import styles from "./styles";
-import { updateStateFunc, RenderMap } from "./helpers";
+import { updateStateFunc } from "./helpers";
+import { RenderMap } from "./components"
 
 const BACKGROUND_TASK = "background-location-task";
 

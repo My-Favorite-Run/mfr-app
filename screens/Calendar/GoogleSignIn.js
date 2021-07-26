@@ -2,8 +2,8 @@ import React from 'react'
 import { Text, Button, View, Alert } from 'react-native'
 import * as GoogleSignIn from 'expo-google-sign-in'
 import styles from './styles'
-import RenderCalendarEvents from '../../components/RenderCalendarEvents'
-import { getWeeklyEvents } from './apiHelpers'
+import { RenderCalendarEvents } from './components'
+import { getWeeklyEvents } from './helpers'
 import * as Updates from "expo-updates"
 
 export default class AuthScreen extends React.Component {
