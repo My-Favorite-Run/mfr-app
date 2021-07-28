@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 //import Components
 import Map from './screens/Map'
 import Calendar from './screens/Calendar'
+import Firebase from './screens/Firebase'
 
 const Tab = createBottomTabNavigator()
 
@@ -38,6 +39,15 @@ export default function App() {
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="calendar" size={size} color={color} />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="Firebase"
+          component={Firebase}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="fire" size={size} color={color} />
             )
           }}
         />

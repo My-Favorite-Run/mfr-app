@@ -15,9 +15,18 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.myfavoriterun.myfavoriterun",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.792848863139-3qib7ecpogl424olc3n8imscgjnnqm08"
+        }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -34,7 +43,8 @@
         "googleMaps": {
           "apiKey": "AIzaSyDAmB9HCtJKIbmaw-bVSlcdmJWmM3kjd2k"
         }
-      }
+      },
+      "googleServicesFile": "./google-services.json"
     },
     "androidNavigationBar": {
       "backgroundColor": "#FFFFFF"

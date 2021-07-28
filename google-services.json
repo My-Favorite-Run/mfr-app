@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "792848863139",
+    "project_id": "mapsandcalendarapi",
+    "storage_bucket": "mapsandcalendarapi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792848863139:android:3341494a9fdd14e8bcd416",
+        "android_client_info": {
+          "package_name": "com.myfavoriterun.myfavoriterun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792848863139-0f04j2njbfsaf9ele2uhobkq5um2c2il.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myfavoriterun.myfavoriterun",
+            "certificate_hash": "0a65ff806b16affd01b7a2d9e13bc7009de31f9e"
+          }
+        },
+        {
+          "client_id": "792848863139-00i2k1jntu3rnuk30fevivc4eqia38ck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAmB9HCtJKIbmaw-bVSlcdmJWmM3kjd2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792848863139-00i2k1jntu3rnuk30fevivc4eqia38ck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
