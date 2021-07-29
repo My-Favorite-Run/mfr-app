@@ -24,11 +24,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-export default class Firebase {
+export default class Firebase extends React.Component {
     constructor(props) {
+        super(props)
         this.props = props;
     }
 
     render() {
+        return (
+            <View style={styles.container}>
+                <Text> Nothing here for now </Text>
+            </View>
+        )
     }
 }
