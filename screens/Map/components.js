@@ -4,14 +4,14 @@ import { View, Text, Button, Image } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 
 import styles from "./styles.js";
+import { startTracking, stopTracking, resetState } from "./utils"
+
+import { useSelector, useDispatch } from "react-redux";
 
 // Renders the Actual Map
-export const RenderMap = ({
-    loadedPosition,
-    region,
-    currentLocation,
-    locationsArray,
-}) => {
+export const RenderMap = () => {
+    const { loadedPosition, region, currentLocation, locationsArray } = useSelector(state => state.map);
+
     if (loadedPosition == false) {
         return <Text>Loading...</Text>;
     } else {
@@ -32,11 +32,27 @@ export const RenderMap = ({
         );
     }
 };
-//checking types
-RenderMap.propTypes = {
-    loadedPosition: PropTypes.bool.isRequired,
-    region: PropTypes.object.isRequired,
-    currentLocation: PropTypes.object.isRequired,
-    locationsArray: PropTypes.array.isRequired,
+
+// Renders the Map Controls
+export const MapControls = () => {
+    const state = useSelector(state => state.map);
+
+    if (state.tracking) {
+        return (
+            <View style={styles.MapControls}>
+                <Button title="Stop" onPress={stopTracking} />
+                <Text>
+                    Total Distance: {state.totalDistance.toFixed(2)} miles
+                </Text>
+            </View>
+        );
+    } else {
+        return (
+            <View style={styles.MapControls}>
+                <Button title="Start" onPress={startTracking} />
+                <Button title="Reset Stats" onPress={resetState} />
+            </View>
+        );
+    }
 };
 
