@@ -65,5 +65,6 @@ export const mapSlice = createSlice({
     }
 })
 
+// exporting all the reducers
 export const { subscribeUpdate, initialLocation, resetGlobalState, stopTrackingState } = mapSlice.actions
 export default mapSlice.reducer
