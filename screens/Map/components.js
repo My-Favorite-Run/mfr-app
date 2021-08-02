@@ -27,6 +27,8 @@ export const RenderMap = () => {
                     coordinates={locationsArray}
                     strokeWidth={7}
                     strokeColor="#FF6792"
+                    lineCap="round"
+                    lineDashPattern={[0]}
                 />
             </MapView>
         );

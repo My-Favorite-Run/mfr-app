@@ -15,9 +15,9 @@ TaskManager.defineTask(BACKGROUND_TASK, ({ data, error }) => {
   }
   if (data) {
     console.log(data)
-    //const { latitude, longitude } = data.locations[0].coords;
+    const { latitude, longitude } = data.locations[0].coords;
 
-    //store.dispatch(subscribeUpdate({ latitude, longitude }))
+    store.dispatch(subscribeUpdate({ latitude, longitude }))
   }
 });
 
@@ -76,7 +76,7 @@ export function stopTracking() {
 }
 
 export function resetState() {
-  store.dispatch(resetGlobalState());
+  store.dispatch(resetGlobalState())
   getInitialLocation()
 }
 

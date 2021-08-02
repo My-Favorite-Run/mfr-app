@@ -28,21 +28,21 @@ export const mapSlice = createSlice({
         },
 
         // called everytime the location is updated
-        subscribeUpdate: (state, { currentLocation }) => {
+        subscribeUpdate: (state, { payload }) => {
             state.tracking = true
             state.totalDistance =
                 state.totalDistance +
                 getDistance(
-                    currentLocation,
+                    payload,
                     state.locationsArray[state.locationsArray.length - 1]
                 ) /
                 1609.344;
             state.loadedPosition = true
-            state.locationsArray = [...state.locationsArray, currentLocation]
-            state.currentLocation = currentLocation
+            state.locationsArray = [...state.locationsArray, payload]
+            state.currentLocation = payload
             state.region = {
-                latitude: currentLocation.latitude,
-                longitude: currentLocation.longitude,
+                latitude: payload.latitude,
+                longitude: payload.longitude,
                 latitudeDelta: 0.002,
                 longitudeDelta: 0.002,
             }
@@ -65,5 +65,5 @@ export const mapSlice = createSlice({
     }
 })
 
-export const { subscribeUpdate, initialLocation } = mapSlice.actions
+export const { subscribeUpdate, initialLocation, resetGlobalState, stopTrackingState } = mapSlice.actions
 export default mapSlice.reducer
