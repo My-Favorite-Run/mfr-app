@@ -2,18 +2,25 @@ import React from 'react'
 import { View, Button, Text, Image } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { logoutUser } from '../../redux/user'
-import { loginWithFacebook, logout } from './utils'
+import { loginWithFacebook, loginWithGoogle, logout } from './utils'
 
-export const RenderButton = (props) => {
+export const RenderButtons = (props) => {
+    //get logged in state from redux store
     const { loggedIn, user } = useSelector((state) => state.user)
 
     if (!loggedIn) {
         return (
-            <Button
-                title="Login With Facebook"
-                onPress={loginWithFacebook}
-            />
+            <View>
+                <Button
+                    title="Login With Facebook"
+                    onPress={loginWithFacebook}
+                />
+                <Button
+                    title="Login With Google"
+                    onPress={loginWithGoogle}
+                />
+
+            </View>
         )
     } else {
         return (
@@ -26,11 +33,14 @@ export const RenderButton = (props) => {
 }
 
 export const RenderUser = (props) => {
+    // get user global state from redux
     const { user } = useSelector((state) => state.user)
 
     if (!user) {
         return (
-            <View />
+            <View>
+                <Text> Not logged in </Text>
+            </View>
         )
     }
 

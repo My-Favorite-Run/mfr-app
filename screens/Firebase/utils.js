@@ -5,10 +5,12 @@ import "firebase/auth";
 import "firebase/database";
 
 import * as Facebook from 'expo-facebook'
+import * as GoogleSignIn from 'expo-google-sign-in'
 
 //redux imports
 import store from '../../redux/store'
 import { authUser, logoutUser } from '../../redux/user'
+import { Alert } from 'react-native';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -33,6 +35,14 @@ firebase.auth().onAuthStateChanged(user => {
             phoneNumber: user.phoneNumber,
             uid: user.uid
         }
+
+        user.providerData.forEach((profile) => {
+            console.log("Sign-in provider: " + profile.providerId);
+            console.log("  Provider-specific UID: " + profile.uid);
+            console.log("  Name: " + profile.displayName);
+            console.log("  Email: " + profile.email);
+            console.log("  Photo URL: " + profile.photoURL);
+        })
 
         store.dispatch(authUser(userData))
         console.log(userData)
@@ -63,13 +73,10 @@ export async function loginWithFacebook() {
 
             //Sign in with credential
             firebase.auth().signInWithCredential(credential).catch(error => {
+                //catch errors
                 console.log(error);
+                Alert.alert("Error!" + error.message)
             });
-
-            // Get the user's name using Facebook's Graph API
-            const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-            const userData = await response.json();
-            alert(`Logged In!`);
         } else {
             // type === 'cancel'
         }
@@ -86,5 +93,28 @@ export async function logout() {
         //store.dispatch(logoutUser())
     } catch (error) {
         console.log(error);
+    }
+}
+
+export async function loginWithGoogle() {
+    try {
+        await GoogleSignIn.initAsync()
+
+        await GoogleSignIn.askForPlayServicesAsync()
+        const { type, user } = await GoogleSignIn.signInAsync()
+
+        if (type === 'success') {
+            //Build Firebase credential with Google access token
+            const credential = firebase.auth.GoogleAuthProvider.credential(user.auth.idToken, user.auth.accessToken);
+            //Sign in with credential
+            firebase.auth().signInWithCredential(credential).catch(error => {
+                //catch errors
+                console.log(error);
+                Alert.alert("Error!" + error.message)
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        Alert.alert("Google Login Error: " + error.message)
     }
 }
