@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Button, Text, Image } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux'
+import styles from './styles'
 import { loginWithFacebook, loginWithGoogle, logout } from './utils'
 
 export const RenderButtons = (props) => {
@@ -50,7 +51,7 @@ export const RenderUser = (props) => {
                 {user.displayName}
             </Text>
             <Text>{user.email}</Text>
-            <Image source={{ uri: user.photoURL }} />
+            <Image style={styles.profilePic} source={{ uri: user.photoURL }} />
         </View>
     )
 }

@@ -10,7 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 //import Components
 import Map from './screens/Map'
 import Calendar from './screens/Calendar'
-import Firebase from './screens/Firebase'
+import Profile from './screens/Profile'
 
 //redux imports
 import { Provider } from 'react-redux'
@@ -47,11 +47,11 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Firebase"
-            component={Firebase}
+            name="Profile"
+            component={Profile}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="fire" size={size} color={color} />
+                <MaterialCommunityIcons name="account" size={size} color={color} />
               )
             }}
           />

@@ -12,7 +12,7 @@ import store from '../../redux/store'
 import { authUser, logoutUser } from '../../redux/user'
 import { Alert } from 'react-native';
 
-// Initialize Firebase
+// Initialize Firebase with the proper configurations
 const firebaseConfig = {
     apiKey: "AIzaSyCgJYFpwxqeV8ubgxGXJaZGR2xKUkCJ-eI",
     authDomain: "mapsandcalendarapi.firebaseapp.com",
@@ -24,7 +24,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-// Listen for authentication state to change.
+// Handles what happens when the user logs in or logs out
 firebase.auth().onAuthStateChanged(user => {
     if (user != null) {
         console.log('We are authenticated now!');
@@ -36,14 +36,7 @@ firebase.auth().onAuthStateChanged(user => {
             uid: user.uid
         }
 
-        user.providerData.forEach((profile) => {
-            console.log("Sign-in provider: " + profile.providerId);
-            console.log("  Provider-specific UID: " + profile.uid);
-            console.log("  Name: " + profile.displayName);
-            console.log("  Email: " + profile.email);
-            console.log("  Photo URL: " + profile.photoURL);
-        })
-
+        // Update the user in the store
         store.dispatch(authUser(userData))
         console.log(userData)
     }
@@ -56,9 +49,14 @@ firebase.auth().onAuthStateChanged(user => {
 
 });
 
+// Logging in with Facebook
 export async function loginWithFacebook() {
     try {
+        //initialize the facebook SDK
         await Facebook.initializeAsync({ appId: '1303402176721089' });
+
+        //login to facebook with expo-facebook
+        //we will need the access token to sign in to firebase
         const {
             type,
             token,
@@ -86,26 +84,21 @@ export async function loginWithFacebook() {
     }
 }
 
-export async function logout() {
-    try {
-        //await Facebook.logOutAsync()
-        await firebase.auth().signOut()
-        //store.dispatch(logoutUser())
-    } catch (error) {
-        console.log(error);
-    }
-}
-
+// Logging in with Google
 export async function loginWithGoogle() {
     try {
+        //initialize the google sdk
         await GoogleSignIn.initAsync()
 
+        //login to google with expo
+        //we will need the access token to sign in to firebase
         await GoogleSignIn.askForPlayServicesAsync()
         const { type, user } = await GoogleSignIn.signInAsync()
 
         if (type === 'success') {
             //Build Firebase credential with Google access token
             const credential = firebase.auth.GoogleAuthProvider.credential(user.auth.idToken, user.auth.accessToken);
+
             //Sign in with credential
             firebase.auth().signInWithCredential(credential).catch(error => {
                 //catch errors
@@ -116,5 +109,15 @@ export async function loginWithGoogle() {
     } catch (error) {
         console.log(error);
         Alert.alert("Google Login Error: " + error.message)
+    }
+}
+
+// Logging out
+export async function logout() {
+    try {
+        await firebase.auth().signOut()
+    } catch (error) {
+        console.log(error);
+        Alert.alert("Error logging out!" + error.message)
     }
 }

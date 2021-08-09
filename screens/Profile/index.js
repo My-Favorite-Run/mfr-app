@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Button, Image } from 'react-native';
 import styles from './styles';
 import { RenderButtons, RenderUser } from './components'
 
-export default Firebase = () => {
+export default Profile = () => {
     return (
         <View style={styles.container}>
             <RenderButtons />
