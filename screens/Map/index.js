@@ -5,8 +5,8 @@ import { StatusBar } from "expo-status-bar";
 
 // local imports
 import styles from "./styles";
-import { RenderMap, MapControls } from "./components"
-import { getInitialLocation, stopTracking } from "./utils"
+import { RenderMap, MapControls, MapHeader, MapFooter } from "./components";
+import { getInitialLocation, stopTracking } from "./utils";
 
 // redux imports
 import { useSelector, useDispatch } from "react-redux";
@@ -36,9 +36,11 @@ export default Maps = (props) => {
     <>
       <StatusBar />
       <View style={styles.container}>
+      <MapHeader />
         <RenderMap />
         <MapControls />
       </View>
+      <MapFooter />
     </>
   )
 

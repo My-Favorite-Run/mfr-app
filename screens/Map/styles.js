@@ -20,6 +20,30 @@ export default styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         alignContent: "space-around",
         justifyContent: "space-around"
+    },
+    button: {
+        margin: 30,
+        height: 30,
+        width: 30,
+        resizeMode: 'stretch',
+    },
+    startButton: {
+        margin: 10,
+        height: 50,
+        width: 50
+    },
+    currentLocationPin: {
+        width: 16,
+        height: 20
+    },
+    MapHeader: {
+        backgroundColor: "white",
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30
+    },
+    MapFooter: {
+        backgroundColor: "white",
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30
     }
-
 })
