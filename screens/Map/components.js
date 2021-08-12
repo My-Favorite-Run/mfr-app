@@ -30,7 +30,7 @@ export const RenderMap = () => {
                     strokeWidth={7}
                     strokeColor="#FF6792"
                     lineCap="round"
-                    lineDashPattern={[0]}
+                    lineDashPattern={[100, 0]}
                 />
             </MapView>
         );
@@ -47,6 +47,12 @@ export const MapControls = () => {
                 <Button title="Stop" onPress={stopTracking} />
                 <Text>
                     Total Distance: {state.totalDistance.toFixed(2)} miles
+                </Text>
+                <Text>
+                    Total Time: {state.totalTime} seconds
+                </Text>
+                <Text>
+                    Current Speed: {state.currentSpeed.toFixed(2)} meters/second
                 </Text>
             </View>
         );

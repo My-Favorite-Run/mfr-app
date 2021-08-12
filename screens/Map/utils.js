@@ -4,9 +4,12 @@ import * as TaskManager from "expo-task-manager";
 // redux imports
 import { useSelector, useDispatch } from "react-redux";
 import store from "../../redux/store"
-import { initialLocation, subscribeUpdate, stopTrackingState, resetGlobalState } from "../../redux/map";
+import { initialLocation, subscribeUpdate, stopTrackingState, resetGlobalState, updateTotalTime } from "../../redux/map";
 
 export const BACKGROUND_TASK = "background-location-task";
+
+//need this global var to be able to start and stop the timer using setInterval
+var timer = null;
 
 // Define the task manager
 TaskManager.defineTask(BACKGROUND_TASK, ({ data, error }) => {
@@ -14,10 +17,13 @@ TaskManager.defineTask(BACKGROUND_TASK, ({ data, error }) => {
     console.error(error.message);
   }
   if (data) {
-    console.log(data)
-    const { latitude, longitude } = data.locations[0].coords;
+    //console.log(data)
+    const { latitude, longitude, speed } = data.locations[0].coords;
+    const timestamp = data.locations[0].timestamp;
 
-    store.dispatch(subscribeUpdate({ latitude, longitude }))
+    console.log(store.getState())
+
+    store.dispatch(subscribeUpdate({ latitude, longitude, timestamp, speed }))
   }
 });
 
@@ -47,10 +53,11 @@ export async function getInitialLocation() {
   const location = await Location.getCurrentPositionAsync({
     accuracy: Location.Accuracy.BestForNavigation,
   });
-  const { latitude, longitude } = location.coords;
+  const { latitude, longitude, speed } = location.coords;
+  const timestamp = location.timestamp;
 
   // this updates the global state with the current location
-  store.dispatch(initialLocation({ latitude, longitude }));
+  store.dispatch(initialLocation({ latitude, longitude, timestamp, speed }));
 }
 
 
@@ -59,6 +66,12 @@ export async function startTracking() {
   let { error } = await _getPermissions();
   if (error) return;
 
+  //starts the timer
+  timer = setInterval(() => {
+    store.dispatch(updateTotalTime())
+  }, 1000);
+
+  //starts the background location task
   await Location.startLocationUpdatesAsync(BACKGROUND_TASK, {
     accuracy: Location.Accuracy.BestForNavigation,
     distanceInterval: 10,
@@ -72,6 +85,7 @@ export async function startTracking() {
 // stop background location task
 export function stopTracking() {
   Location.stopLocationUpdatesAsync(BACKGROUND_TASK);
+  clearInterval(timer)
   store.dispatch(stopTrackingState())
 }
 
@@ -79,4 +93,3 @@ export function resetState() {
   store.dispatch(resetGlobalState())
   getInitialLocation()
 }
-

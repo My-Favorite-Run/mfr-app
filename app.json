@@ -51,6 +51,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "facebookScheme": "fb1303402176721089",
+    "facebookAppId": "1303402176721089",
+    "facebookDisplayName": "My Favorite Run"
   }
 }

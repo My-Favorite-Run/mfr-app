@@ -8,13 +8,8 @@ import styles from "./styles";
 import { RenderMap, MapControls, MapHeader, MapFooter } from "./components";
 import { getInitialLocation, stopTracking } from "./utils";
 
-// redux imports
-import { useSelector, useDispatch } from "react-redux";
-
 // main component
 export default Maps = (props) => {
-  const store = useSelector(state => state.map);
-  const dispatcher = useDispatch();
   // when the map is loaded, get the initial location
   // and when the component is destroyed, stop the background task
   // effectively works as compoonentDidMount
