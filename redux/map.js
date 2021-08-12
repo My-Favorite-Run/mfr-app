@@ -10,6 +10,8 @@ export const mapSlice = createSlice({
         totalDistance: 0,
         loadedPosition: false,
         tracking: false,
+        currentSpeed: null,
+        totalTime: 0
     },
     reducers: {
         // called when the initial location is loaded
@@ -25,6 +27,7 @@ export const mapSlice = createSlice({
                 latitudeDelta: 0.002,
                 longitudeDelta: 0.002,
             }
+            state.currentSpeed = null
         },
 
         // called everytime the location is updated
@@ -46,6 +49,7 @@ export const mapSlice = createSlice({
                 latitudeDelta: 0.002,
                 longitudeDelta: 0.002,
             }
+            state.currentSpeed = payload.speed
         },
 
         // called when the user stops tracking and when state is reset
@@ -56,6 +60,13 @@ export const mapSlice = createSlice({
             state.totalDistance = 0
             state.loadedPosition = false
             state.tracking = false
+            state.currentSpeed = null
+            state.totalTime = 0
+        },
+
+        //updates the total time, called each second
+        updateTotalTime: (state, { payload }) => {
+            state.totalTime = state.totalTime + 1
         },
 
         // called after user stops tracking the location
@@ -66,5 +77,5 @@ export const mapSlice = createSlice({
 })
 
 // exporting all the reducers
-export const { subscribeUpdate, initialLocation, resetGlobalState, stopTrackingState } = mapSlice.actions
+export const { subscribeUpdate, initialLocation, resetGlobalState, updateTotalTime, stopTrackingState } = mapSlice.actions
 export default mapSlice.reducer

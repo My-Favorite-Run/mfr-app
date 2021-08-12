@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
     },
     map: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 90
+        height: Dimensions.get('window').height - 120
     },
     markerIcon: {
         width: 20,
@@ -17,6 +17,7 @@ export default styles = StyleSheet.create({
     },
     MapControls: {
         flexDirection: "row",
+        flexWrap: "wrap",
         width: Dimensions.get('window').width,
         alignContent: "space-around",
         justifyContent: "space-around"
