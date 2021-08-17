@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Map from './screens/Map'
 import Calendar from './screens/Calendar'
 import Profile from './screens/Profile'
+import SignUp from './screens/SignUp'
 
 //redux imports
 import { Provider } from 'react-redux'
@@ -54,6 +55,10 @@ export default function App() {
                 <MaterialCommunityIcons name="account" size={size} color={color} />
               )
             }}
+          />
+          <Tab.Screen
+            name="SignUp"
+            component={SignUp}
           />
         </Tab.Navigator>
       </NavigationContainer>
