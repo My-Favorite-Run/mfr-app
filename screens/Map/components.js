@@ -6,7 +6,7 @@ import { Appbar } from "react-native-paper";
 
 import styles from "./styles.js";
 import { startTracking, stopTracking, resetState } from "./utils"
-
+import { _onPlayPausePressed } from './AudioProvider';
 import { useSelector, useDispatch } from "react-redux";
 import { stopLocationUpdatesAsync } from "expo-location";
 
@@ -57,9 +57,10 @@ export const MapControls = () => {
             </View>
         );
     } else {
+        // trying to perform multiple functions within one button
         return (
             <View style={styles.MapControls}>
-                <Button title="Start" onPress={startTracking} />
+                <Button title="Start"  onPress={() => { startTracking(); _onPlayPausePressed(); } } />
                 <Button title="Reset Stats" onPress={resetState} />
                 <TouchableOpacity title="Volume" onPress={()=>{alert("volume")}}>
                     <Image 

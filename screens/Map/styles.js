@@ -5,11 +5,12 @@ export default styles = StyleSheet.create({
         flex: 1,
         marginTop: 50,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: Dimensions.get('window').height / 3
     },
     map: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 120
+        height: Dimensions.get('window').height - 180
     },
     markerIcon: {
         width: 20,
