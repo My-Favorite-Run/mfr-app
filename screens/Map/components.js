@@ -80,7 +80,7 @@ export const MapHeader = () => {
     return (
         <View>
             <Appbar.Header 
-                statusBarHeight={100} 
+                statusBarHeight={50} 
                 style={{backgroundColor: "white"}}>
             </Appbar.Header>
             <Appbar style={styles.MapHeader}>
@@ -119,7 +119,7 @@ export const MapFooter = () => {
         return (
             <View>
                 <Appbar style={styles.MapFooter}> 
-                    <View style={styles.MapControls}>
+                    <View style={{flex:1, flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
                     <TouchableOpacity title="Start" onPress={startTracking}>
                         <Image 
                             style={styles.startButton}
@@ -130,7 +130,7 @@ export const MapFooter = () => {
                     <TouchableOpacity title="Volume" onPress={()=>{alert("volume")}}>
                         <Image 
                             style={styles.button}
-                            style={{margin: 20}}
+                            style={{margin: 30}}
                             source={require("../../assets/volume.png")}
                         />
                     </TouchableOpacity>

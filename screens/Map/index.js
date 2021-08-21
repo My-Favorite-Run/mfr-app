@@ -29,9 +29,9 @@ export default Maps = (props) => {
 
   return (
     <>
-      <StatusBar />
       <View style={styles.container}>
-      <MapHeader />
+        <StatusBar />
+        <MapHeader />
         <RenderMap />
         <MapControls />
       </View>
