@@ -7,16 +7,24 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+  "rnpm": {
+    "assets": [
+      "fonts"
+    ]
+  },
   "dependencies": {
+    "@expo-google-fonts/barlow": "^0.2.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/native": "^6.0.2",
+    "@react-navigation/native-stack": "^6.1.0",
     "@reduxjs/toolkit": "^1.6.1",
     "expo": "^42.0.0",
     "expo-auth-session": "~3.3.1",
     "expo-constants": "~11.0.1",
     "expo-device": "~3.3.0",
     "expo-facebook": "~11.3.1",
+    "expo-font": "~9.2.1",
     "expo-google-sign-in": "~9.2.1",
     "expo-location": "~12.1.2",
     "expo-permissions": "~12.1.1",
@@ -40,6 +48,7 @@
     "react-native-screens": "~3.4.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
+    "react-navigation-tabs": "^2.11.1",
     "react-redux": "^7.2.4"
   },
   "devDependencies": {
