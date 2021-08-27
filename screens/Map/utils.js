@@ -51,8 +51,9 @@ export async function getInitialLocation() {
   if (error) return;
 
   const location = await Location.getCurrentPositionAsync({
-    accuracy: Location.Accuracy.BestForNavigation,
+    accuracy: Location.Accuracy.Lowest,
   });
+
   const { latitude, longitude, speed } = location.coords;
   const timestamp = location.timestamp;
 

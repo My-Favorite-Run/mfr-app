@@ -7,6 +7,7 @@ import { StatusBar } from "expo-status-bar";
 import styles from "./styles";
 import { RenderMap, MapControls, MapHeader, MapFooter } from "./components";
 import { getInitialLocation, stopTracking } from "./utils";
+import { AudioProvider } from './AudioProvider';
 
 // main component
 export default Maps = (props) => {
@@ -31,11 +32,12 @@ export default Maps = (props) => {
     <>
       <StatusBar />
       <View style={styles.container}>
-      <MapHeader />
+        <MapHeader />
         <RenderMap />
-        <MapControls />
+        <AudioProvider />
+        {/* <MapControls /> */}
       </View>
-      <MapFooter />
+      {/* <MapFooter /> */}
     </>
   )
 
