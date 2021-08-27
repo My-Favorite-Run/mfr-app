@@ -6,7 +6,7 @@ import { Appbar } from "react-native-paper";
 
 import styles from "./styles.js";
 import { startTracking, stopTracking, resetState } from "./utils"
-import { _onPlayPausePressed } from './AudioProvider';
+// import { _onPlayPausePressed } from './AudioProvider';
 import { useSelector, useDispatch } from "react-redux";
 import { stopLocationUpdatesAsync } from "expo-location";
 
@@ -38,13 +38,16 @@ export const RenderMap = () => {
 };
 
 // Renders the Map Controls
-export const MapControls = () => {
+export const MapControls = (props) => {
     const state = useSelector(state => state.map);
 
     if (state.tracking) {
         return (
             <View style={styles.MapControls}>
-                <Button title="Stop" onPress={stopTracking} />
+                <Button title="Stop" onPress={() => {
+                    stopTracking();
+                    props.onStopPressed()
+                }} />
                 <Text>
                     Total Distance: {state.totalDistance.toFixed(2)} miles
                 </Text>
@@ -60,10 +63,14 @@ export const MapControls = () => {
         // trying to perform multiple functions within one button
         return (
             <View style={styles.MapControls}>
-                <Button title="Start"  onPress={() => { startTracking(); _onPlayPausePressed(); } } />
+
+                <Button title="Start" onPress={() => {
+                    startTracking();
+                    props.onPlayPausePressed();
+                }} />
                 <Button title="Reset Stats" onPress={resetState} />
-                <TouchableOpacity title="Volume" onPress={()=>{alert("volume")}}>
-                    <Image 
+                <TouchableOpacity title="Volume" onPress={() => { alert("volume") }}>
+                    <Image
                         style={styles.button}
                         source={require("../../assets/volume.png")}
                     />
@@ -77,32 +84,32 @@ export const MapControls = () => {
 
 export const MapHeader = () => {
     const state = useSelector(state => state.map);
-    
+
     return (
         <View>
-            <Appbar.Header 
-                statusBarHeight={100} 
-                style={{backgroundColor: "white"}}>
+            <Appbar.Header
+                statusBarHeight={100}
+                style={{ backgroundColor: "white" }}>
             </Appbar.Header>
             <Appbar style={styles.MapHeader}>
-            <View style={styles.MapControls}>
-                <TouchableOpacity title="Back" onPress={()=>{alert("home page")}}>
-                    <Image
-                        style={styles.button}
-                        source={require("../../assets/back-arrow.png")}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity title="Settings" onPress={()=>{alert("settings")}}>
-                    <Image 
-                        style={styles.button}
-                        source={require("../../assets/settings.png")}
-                    />
-                </TouchableOpacity>
-            </View>
-        </Appbar>
-      </View>
+                <View style={styles.MapControls}>
+                    <TouchableOpacity title="Back" onPress={() => { alert("home page") }}>
+                        <Image
+                            style={styles.button}
+                            source={require("../../assets/back-arrow.png")}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity title="Settings" onPress={() => { alert("settings") }}>
+                        <Image
+                            style={styles.button}
+                            source={require("../../assets/settings.png")}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </Appbar>
+        </View>
     );
-  };
+};
 
 export const MapFooter = () => {
     const state = useSelector(state => state.map);
@@ -119,22 +126,22 @@ export const MapFooter = () => {
     } else {
         return (
             <View>
-                <Appbar style={styles.MapFooter}> 
+                <Appbar style={styles.MapFooter}>
                     <View style={styles.MapControls}>
-                    <TouchableOpacity title="Start" onPress={startTracking}>
-                        <Image 
-                            style={styles.startButton}
-                            source={require("../../assets/start-button.png")}
-                        />
-                    </TouchableOpacity>
-                    <Button title="Reset Stats" onPress={resetState} />
-                    <TouchableOpacity title="Volume" onPress={()=>{alert("volume")}}>
-                        <Image 
-                            style={styles.button}
-                            style={{margin: 20}}
-                            source={require("../../assets/volume.png")}
-                        />
-                    </TouchableOpacity>
+                        <TouchableOpacity title="Start" onPress={startTracking}>
+                            <Image
+                                style={styles.startButton}
+                                source={require("../../assets/start-button.png")}
+                            />
+                        </TouchableOpacity>
+                        <Button title="Reset Stats" onPress={resetState} />
+                        <TouchableOpacity title="Volume" onPress={() => { alert("volume") }}>
+                            <Image
+                                style={styles.button}
+                                style={{ margin: 20 }}
+                                source={require("../../assets/volume.png")}
+                            />
+                        </TouchableOpacity>
                     </View>
                 </Appbar>
             </View>

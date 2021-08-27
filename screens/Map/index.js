@@ -35,7 +35,7 @@ export default Maps = (props) => {
         <MapHeader />
         <RenderMap />
         <AudioProvider />
-        <MapControls />
+        {/* <MapControls /> */}
       </View>
       {/* <MapFooter /> */}
     </>

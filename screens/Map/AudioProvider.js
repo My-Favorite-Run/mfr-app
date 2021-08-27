@@ -1,8 +1,10 @@
-import React, { Component, createContext } from 'react';
+import React, { Children, Component, createContext } from 'react';
 import { Text, View, Dimensions, StyleSheet, TouuchableOpacity, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo-av';
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
+
+import { MapControls } from './components'
 
 class PlaylistItem {
 	constructor(name, uri, speaker) {
@@ -17,12 +19,12 @@ const PLAYLIST = [
 	new PlaylistItem(
 		'Morning Warmup',
 		require('./tracks/MindfulRun10min.mp3'), // local audio file
-        'Narrated by Elinor Fish'
+		'Narrated by Elinor Fish'
 	),
 	new PlaylistItem(
 		'Midday Break',
 		'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
-        // remote audio file
+		// remote audio file
 	),
 ];
 
@@ -52,25 +54,25 @@ export class AudioProvider extends Component {
 			playsInSilentModeIOS: true,
 			shouldDuckAndroid: true,
 			interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-            playThroughEarpieceAndroid: true,
-		}); 
+			playThroughEarpieceAndroid: true,
+		});
 
 		this._loadNewPlayback(false);
 	}
 
 	async _loadNewPlayback(playing) {
-/* 		if (this.playback != null) {
-			await this.playback.unloadAsync();
-			//this.playback.setOnPlaybackStatusUpdate(null);
-			//this.playback = null;
-		} */
+		/* 		if (this.playback != null) {
+					await this.playback.unloadAsync();
+					//this.playback.setOnPlaybackStatusUpdate(null);
+					//this.playback = null;
+				} */
 
 		const source = PLAYLIST[this.index].uri; // for local files. {uri: audio.uri } for remote files
- 		
-        const initialStatus = {
+
+		const initialStatus = {
 			shouldPlay: playing,
 		};
-    
+
 		const { sound, status } = await Audio.Sound.createAsync(
 			source,
 			initialStatus,
@@ -89,11 +91,11 @@ export class AudioProvider extends Component {
 				playbackPosition: null,
 				isLoading: true,
 			});
-		} 
-        else {
+		}
+		else {
 			this.setState({
 				playbackName: PLAYLIST[this.index].name,
-                playbackSpeaker: PLAYLIST[this.index].speaker,
+				playbackSpeaker: PLAYLIST[this.index].speaker,
 				//portrait: PLAYLIST[this.index].image,
 				isLoading: false,
 			});
@@ -108,7 +110,7 @@ export class AudioProvider extends Component {
 				shouldPlay: status.shouldPlay,
 				isPlaying: status.isPlaying,
 			});
- 		} 
+		}
 		/* else {
 			if (status.error) {
 				console.log(`FATAL PLAYER ERROR: ${status.error}`);
@@ -116,7 +118,7 @@ export class AudioProvider extends Component {
 		}  */
 	};
 
-    _onPlayPausePressed = () => {
+	_onPlayPausePressed = () => {
 		if (this.playback != null) {
 			if (this.state.isPlaying) {
 				this.playback.pauseAsync();
@@ -126,7 +128,7 @@ export class AudioProvider extends Component {
 		}
 	};
 
-    _onStopPressed = () => {
+	_onStopPressed = () => {
 		if (this.playback != null) {
 			this.playback.stopAsync();
 		}
@@ -178,83 +180,85 @@ export class AudioProvider extends Component {
 
 
 	render() {
-/*         const {
-            isPlaying
-        } = this.state;
- */
+		/*         const {
+					isPlaying
+				} = this.state;
+		 */
 		return (
-			 <View style={styles.container}>
+			//  <View style={styles.container}>
 
-                  <View style={styles.playbackContainer}>
+			// 	<View
+			// 		style={[
+			// 			styles.buttonsContainerBase,
+			//             styles.buttonsContainerTopRow
+			// 		]}
+			// 	>
+			// 		<TouchableOpacity
+			// 			style={styles.buttonsContainerBase}
+			// 			onPress={this._onPlayPausePressed}
+			// 			disabled={this.state.isLoading}
+			// 		>
+			// 			<View>
+			// 				{this.state.isPlaying ? (
+			// 					<MaterialIcons
+			// 						name="pause"
+			// 						size={65}
+			// 						color="#dd99ff"
+			// 					/>
+			// 				) : (
+			// 					<MaterialIcons
+			// 						name="play-arrow"
+			// 						size={65}
+			// 						color="#56D5FA"
+			// 					/>
+			// 				)}
+			// 			</View>
+			// 		</TouchableOpacity>
+
+			// 		<TouchableOpacity
+			// 			style={styles.buttonContainerBase}
+			// 			onPress={this._onStopPressed}
+			// 			disabled={this.state.isLoading}
+			// 		>
+			// 			<View>
+			// 				<MaterialIcons
+			// 					name="stop"
+			// 					size={65}
+			// 					color="#ff3333"
+			// 				/>
+			// 			</View>
+			// 		</TouchableOpacity>
+
+			// 	</View>
+
+			// </View>
+			<View style={styles.container}>
+				<MapControls onPlayPausePressed={this._onPlayPausePressed} onStopPressed={this._onStopPressed} />
+				<View style={styles.playbackContainer}>
 					<Slider
 						style={styles.playbackSlider}
 						value={this._getSeekSliderPosition()}
 						minimumTrackTintColor="#4CCFF9"
-                        maximumTrackTintColor="#000000"
+						maximumTrackTintColor="#000000"
 						disabled={this.state.isLoading}
 					/>
 				</View>
 
 				<View style={styles.detailsContainer}>
-                {/* <Text style={[styles.text]}>
-						{this.state.playbackName}
-					</Text>
-                    <Text style={[styles.text]}> 
-                        {this.state.playbackSpeaker}
-                     </Text> */}
-				    <Text style={[styles.text]}>
+					{/* <Text style={[styles.text]}>
+			 			{this.state.playbackName}
+			 		</Text>
+			         <Text style={[styles.text]}> 
+			             {this.state.playbackSpeaker}
+			          </Text> */}
+					<Text style={[styles.text]}>
 						{this._getTimestamp()}
-				    </Text> 
-				</View>
-
-				<View
-					style={[
-						styles.buttonsContainerBase,
-                        styles.buttonsContainerTopRow
-					]}
-				>
-					<TouchableOpacity
-						style={styles.buttonsContainerBase}
-						onPress={this._onPlayPausePressed}
-						disabled={this.state.isLoading}
-					>
-						<View>
-							{this.state.isPlaying ? (
-								<MaterialIcons
-									name="pause"
-									size={65}
-									color="#dd99ff"
-								/>
-							) : (
-								<MaterialIcons
-									name="play-arrow"
-									size={65}
-									color="#56D5FA"
-								/>
-							)}
-						</View>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						style={styles.buttonContainerBase}
-						onPress={this._onStopPressed}
-						disabled={this.state.isLoading}
-					>
-						<View>
-							<MaterialIcons
-								name="stop"
-								size={65}
-								color="#ff3333"
-							/>
-						</View>
-					</TouchableOpacity>
-
+					</Text>
 				</View>
 
 			</View>
- 
-            
-        );
+
+		);
 	}
 }
 {/* <AudioContext.Provider
@@ -270,11 +274,11 @@ const styles = StyleSheet.create({
 	container: {
 		//flex: 1,
 		//flexDirection: 'column',
-        height: DEVICE_HEIGHT / 7,
+		height: DEVICE_HEIGHT / 7,
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		//alignSelf: 'stretch',
-    
+
 	},
 	portraitContainer: {
 		marginTop: 80,
@@ -293,13 +297,13 @@ const styles = StyleSheet.create({
 		//flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		alignSelf: 'stretch',
+		// alignSelf: 'stretch',
 	},
 	playbackSlider: {
 		alignSelf: 'stretch',
-        width: DEVICE_WIDTH - 20,
-        //height: DEVICE_HEIGHT / 5 ,
-        padding: 10,
+		width: DEVICE_WIDTH - 20,
+		//height: DEVICE_HEIGHT / 5 ,
+		padding: 10,
 		marginLeft: 10,
 		marginRight: 10,
 	},
