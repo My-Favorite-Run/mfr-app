@@ -30,8 +30,8 @@ export default Maps = (props) => {
 
   return (
     <>
-      <StatusBar />
       <View style={styles.container}>
+        <StatusBar />
         <MapHeader />
         <RenderMap />
         <AudioProvider />

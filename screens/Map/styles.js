@@ -24,13 +24,13 @@ export default styles = StyleSheet.create({
         justifyContent: "space-around"
     },
     button: {
-        margin: 30,
+        margin: 15,
         height: 30,
         width: 30,
         resizeMode: 'stretch',
     },
     startButton: {
-        margin: 10,
+        margin: 30,
         height: 50,
         width: 50
     },
