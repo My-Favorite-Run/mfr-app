@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import from libraries
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {View} from 'react-native'
+import {Icon} from 'react-native-elements'
 
 //import Components
 import Map from './screens/Map'
@@ -16,6 +18,7 @@ import SignUp from './screens/SignUp'
 import User from './screens/User'
 import Home from './screens/Home'
 import Notifications from './screens/Notifications'
+import BottomNavigator from './BottomNavigator'
 
 //redux imports
 import { Provider } from 'react-redux'
@@ -23,6 +26,7 @@ import store from './redux/store'
 
 //import font
 import { useFonts, Barlow } from '@expo-google-fonts/barlow';
+//import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 const Tab = createBottomTabNavigator()
 const ProfileStack = createNativeStackNavigator()
@@ -59,6 +63,8 @@ function ProfileStackNav() {
 export default function App() {
   return(
     <Provider store={store}>
+      {/* navigator with plus button
+      <BottomNavigator/> */}
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Home"
@@ -106,3 +112,4 @@ export default function App() {
     </Provider>
   )
 }
+

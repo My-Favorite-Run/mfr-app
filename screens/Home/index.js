@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, } from 'react-native';
 import styles from './styles';
-import {Header, } from './components';
+import {Header, GetCurrDate} from './components';
 
 function Home(props) {
     return (
@@ -11,6 +11,7 @@ function Home(props) {
                 <Text>
                     Home 
                 </Text>
+                <GetCurrDate/>
             </View>
         </View>
     );
