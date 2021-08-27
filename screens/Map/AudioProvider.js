@@ -4,7 +4,7 @@ import { Audio } from 'expo-av';
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 
-import { MapControls } from './components'
+import { MapFooter } from './components'
 
 class PlaylistItem {
 	constructor(name, uri, speaker) {
@@ -233,7 +233,7 @@ export class AudioProvider extends Component {
 
 			// </View>
 			<View style={styles.container}>
-				<MapControls onPlayPausePressed={this._onPlayPausePressed} onStopPressed={this._onStopPressed} />
+				<MapFooter onPlayPausePressed={this._onPlayPausePressed} onStopPressed={this._onStopPressed} />
 				<View style={styles.playbackContainer}>
 					<Slider
 						style={styles.playbackSlider}

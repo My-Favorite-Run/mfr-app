@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 import { View, Text, Button, Image, TouchableOpacity } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
@@ -6,9 +5,7 @@ import { Appbar } from "react-native-paper";
 
 import styles from "./styles.js";
 import { startTracking, stopTracking, resetState } from "./utils"
-// import { _onPlayPausePressed } from './AudioProvider';
 import { useSelector, useDispatch } from "react-redux";
-import { stopLocationUpdatesAsync } from "expo-location";
 
 // Renders the Actual Map
 export const RenderMap = () => {
@@ -111,15 +108,24 @@ export const MapHeader = () => {
     );
 };
 
-export const MapFooter = () => {
+export const MapFooter = (props) => {
     const state = useSelector(state => state.map);
 
     if (state.tracking) {
         return (
             <View style={styles.MapControls}>
-                <Button title="Stop" onPress={stopTracking} />
+                <Button title="Stop" onPress={() => {
+                    stopTracking();
+                    props.onStopPressed();
+                }} />
                 <Text>
                     Total Distance: {state.totalDistance.toFixed(2)} miles
+                </Text>
+                <Text>
+                    Total Time: {state.totalTime} seconds
+                </Text>
+                <Text>
+                    Current Speed: {state.currentSpeed.toFixed(2)} meters/second
                 </Text>
             </View>
         );
@@ -128,7 +134,10 @@ export const MapFooter = () => {
             <View>
                 <Appbar style={styles.MapFooter}>
                     <View style={styles.MapControls}>
-                        <TouchableOpacity title="Start" onPress={startTracking}>
+                        <TouchableOpacity title="Start" onPress={() => {
+                            startTracking();
+                            props.onPlayPausePressed();
+                        }}>
                             <Image
                                 style={styles.startButton}
                                 source={require("../../assets/start-button.png")}
