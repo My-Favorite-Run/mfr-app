@@ -8,7 +8,7 @@ export default styles = StyleSheet.create({
         marginLeft: 20,
         //drop shadow for ios
         shadowColor: "#000",
-        shadowOffset: {width: 0, height: 2,},
+        shadowOffset: { width: 0, height: 2, },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         //drop shadow for android
@@ -37,8 +37,8 @@ export default styles = StyleSheet.create({
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
         backgroundColor: "tomato",
-        
-        
+
+
     },
     header: {
         backgroundColor: "white",
@@ -49,7 +49,7 @@ export default styles = StyleSheet.create({
         justifyContent: "space-between",
         //drop shadow for ios
         shadowColor: "#000",
-        shadowOffset: {width: 0, height: 9,},
+        shadowOffset: { width: 0, height: 9, },
         shadowOpacity: 0.48,
         shadowRadius: 11.95,
         //drop shadow for android
@@ -65,7 +65,7 @@ export default styles = StyleSheet.create({
         borderRadius: 20,
         //drop shadow for ios
         shadowColor: "#000",
-        shadowOffset: {width: 0, height: 2,},
+        shadowOffset: { width: 0, height: 2, },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         //drop shadow for android
@@ -87,5 +87,9 @@ export default styles = StyleSheet.create({
         flex: 1,
         borderWidth: 1,
         borderColor: "tomato"
+    },
+    profilePic: {
+        width: 50,
+        height: 50
     }
 })

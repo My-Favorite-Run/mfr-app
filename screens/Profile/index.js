@@ -16,8 +16,8 @@ export default Profile = () => {
             <RenderButtons />
             {/* <RenderUser /> */}
             <View>
-                <Divider 
-                    orientation="horizontal" 
+                <Divider
+                    orientation="horizontal"
                     width={2}
                     inset={true}
                     insetType="middle"
@@ -26,10 +26,10 @@ export default Profile = () => {
             </View>
             <View style={styles.signUpContainer}>
                 <Text style={styles.signUpText}>
-                    Don't have an account?{" "} 
+                    Don't have an account?{" "}
                 </Text>
                 <Text style={styles.signUpLink}
-                onPress={()=> Alert.alert("Sign up")}                    >
+                    onPress={() => Alert.alert("Sign up")}                    >
                     Sign up
                 </Text>
             </View>

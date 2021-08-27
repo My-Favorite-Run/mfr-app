@@ -8,30 +8,31 @@ import { ProgressChart, ActivityCard, Header, BottomTab } from './components';
 import styles from './styles';
 import { RenderButtons, RenderUser } from './components'
 
-export default User = ({navigation}) => {
-    const cards = [<ActivityCard/>, <ActivityCard/>, <ActivityCard/>]
+export default User = ({ navigation }) => {
+    const cards = [<ActivityCard />, <ActivityCard />, <ActivityCard />]
     return (
         <View style={styles.background}>
-            <Header/>
+            <Header />
             <View style={styles.userContainer}>
                 <Avatar
                     rounded
                     title="MT"
                 />
+                <RenderUser />
             </View>
             <View style={styles.progressContainer}>
                 <Text style={styles.progressTitle}>
                     Progress
                 </Text>
-                <ProgressChart/>
+                <ProgressChart />
             </View>
             <View style={styles.activityContainer}>
                 <Text style={styles.activityTitle}>
                     Activity
                 </Text>
-                <ActivityCard/>
+                <ActivityCard />
             </View>
-            
+
             {/* <BottomTab/> */}
         </View>
     )

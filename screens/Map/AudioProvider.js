@@ -274,9 +274,11 @@ const styles = StyleSheet.create({
 	container: {
 		//flex: 1,
 		//flexDirection: 'column',
-		height: DEVICE_HEIGHT / 7,
+		height: DEVICE_HEIGHT / 8,
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		borderTopLeftRadius: 30,
+		borderTopRightRadius: 30,
 		//alignSelf: 'stretch',
 
 	},
@@ -291,12 +293,14 @@ const styles = StyleSheet.create({
 		//height: 40,
 		//marginTop: 20,
 		alignItems: 'center',
+		backgroundColor: '#fff',
 	},
 	playbackContainer: {
 		flex: 1,
 		//flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		backgroundColor: '#fff',
 		// alignSelf: 'stretch',
 	},
 	playbackSlider: {

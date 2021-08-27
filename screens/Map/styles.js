@@ -3,14 +3,14 @@ import { Dimensions, StyleSheet } from 'react-native'
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 50,
+        marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: Dimensions.get('window').height / 3
+        marginBottom: Dimensions.get('window').height / 8
     },
     map: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 180
+        height: Dimensions.get('window').height - 230
     },
     markerIcon: {
         width: 20,
