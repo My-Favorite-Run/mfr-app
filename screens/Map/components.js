@@ -133,7 +133,7 @@ export const MapFooter = (props) => {
         return (
             <View>
                 <Appbar style={styles.MapFooter}>
-                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={styles.MapControls}>
                         <TouchableOpacity title="Start" onPress={() => {
                             startTracking();
                             props.onPlayPausePressed();
