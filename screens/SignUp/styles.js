@@ -51,7 +51,7 @@ export default styles = StyleSheet.create({
     },
     logo: {
         width: "100%",
-        height: "50%"
+        resizeMode: "stretch"
     },
     signUpContainer: {
         flex: 1,

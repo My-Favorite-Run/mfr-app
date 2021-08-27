@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Button, Text, Image } from 'react-native'
+import { View, Text, Image } from 'react-native'
+import { Button, Icon } from 'react-native-elements'
 
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './styles'
@@ -11,14 +12,32 @@ export const RenderButtons = (props) => {
 
     if (!loggedIn) {
         return (
-            <View>
-                <Button
-                    title="Login With Facebook"
+            <View style={styles.buttonsContainer}>
+                <Button 
+                    buttonStyle={styles.buttonFacebook}
+                    containerStyle={styles.button}
+                    title="Continue with Facebook"
                     onPress={loginWithFacebook}
+                    icon={
+                        <Icon 
+                            type="font-awesome-5"
+                            name="facebook-square"
+                            color="#FFFFFF"
+                        />
+                    }
                 />
-                <Button
-                    title="Login With Google"
+                <Button 
+                    buttonStyle={styles.buttonGoogle}
+                    containerStyle={styles.button}
+                    title="Continue with Google"
                     onPress={loginWithGoogle}
+                    icon={
+                        <Icon
+                            type="font-awesome-5"
+                            name="google"
+                            color="#FFFFFF"
+                        />
+                    }
                 />
 
             </View>
@@ -37,13 +56,13 @@ export const RenderUser = (props) => {
     // get user global state from redux
     const { user } = useSelector((state) => state.user)
 
-    if (!user) {
-        return (
-            <View>
-                <Text> Not logged in </Text>
-            </View>
-        )
-    }
+    // if (!user) {
+    //     return (
+    //         <View>
+    //             <Text> Not logged in </Text>
+    //         </View>
+    //     )
+    // }
 
     return (
         <View>
