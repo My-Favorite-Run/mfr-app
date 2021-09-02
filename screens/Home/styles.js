@@ -5,6 +5,42 @@ export default styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "white"
     },
+    currDayContainer: {
+        backgroundColor: "#B7E8F8",
+        width: "12%",
+        height: "100%",
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        elevation: 8,
+    },
+    dayContainer: {
+        backgroundColor: "#FF676F",
+        width: "12%",
+        height: "100%",
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        elevation: 8
+    },
+    daysContainer:{
+        //change later
+        flex: 0.1,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        marginTop: "5%",
+    },
+    dateText: {
+        color: "#FFFFFF",
+        fontWeight: "bold",
+        fontSize: 18,
+    },
+    dayText: {
+        color: "#FFFFFF",
+        fontWeight: "bold",
+        fontSize: 11,
+    },
     header: {
         backgroundColor: "white",
         height: "12%",
