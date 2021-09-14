@@ -20,7 +20,7 @@ export default styles = StyleSheet.create({
         flexWrap: "wrap",
         width: Dimensions.get('window').width,
         alignContent: "space-around",
-        justifyContent: "space-around"
+        justifyContent: "space-between"
     },
     button: {
         margin: 30,
@@ -46,5 +46,9 @@ export default styles = StyleSheet.create({
         backgroundColor: "white",
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30
+    },
+    iconContainer: {
+        marginTop: 15,
+        padding: 30,
     }
 })

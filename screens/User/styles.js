@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
     },
     activityContainer: {
         flex: 1,
-        borderWidth: 1,
+        //borderWidth: 1,
         borderColor: "tomato"
     },
     activityTitle: {
@@ -25,7 +25,7 @@ export default styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 20,
         marginTop: 10,
-        borderWidth: 1,
+        //borderWidth: 1,
         borderColor: "tomato"
     },
     background: {
@@ -73,7 +73,7 @@ export default styles = StyleSheet.create({
     },
     progressContainer: {
         flex: 1,
-        borderWidth: 1,
+        //borderWidth: 1,
         borderColor: "tomato",
     },
     progressTitle: {
@@ -85,7 +85,7 @@ export default styles = StyleSheet.create({
     },
     userContainer: {
         flex: 1,
-        borderWidth: 1,
+        //borderWidth: 1,
         borderColor: "tomato"
     }
 })

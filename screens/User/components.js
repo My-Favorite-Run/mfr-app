@@ -25,8 +25,8 @@ export const BottomTab = (props) => {
 export const Header = () => {
     const navigation = useNavigation();
 
-    const handleNotif = () => {
-        navigation.navigate('Notifications')
+    const handleBack = () => {
+        navigation.navigate('HomeStack', {screen: 'Home'})
     }
     const handleSettings = () => {
         navigation.navigate('Profile')
@@ -34,12 +34,12 @@ export const Header = () => {
     return(
         <View style={styles.header}>
             <Icon
-                name="bell-outline"
+                name="arrow-left-circle"
                 type="material-community"
                 color="#FF676F"
                 size={40}
                 containerStyle={styles.iconContainer}
-                onPress={handleNotif}
+                onPress={handleBack}
             />
             <Icon
                 name="cog-outline"

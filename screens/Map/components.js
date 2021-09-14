@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { View, Text, Button, Image, TouchableOpacity } from "react-native";
+import {Icon} from "react-native-elements"
+import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker, Polyline } from "react-native-maps";
 import { Appbar } from "react-native-paper";
 
@@ -76,25 +78,40 @@ export const MapControls = () => {
 
 export const MapHeader = () => {
     const state = useSelector(state => state.map);
-    
+    const navigation = useNavigation();
+
+    const handleBack = () => {
+        navigation.navigate('HomeStack', {screen: 'Home'})
+    }
+    // when profile icon pressed, always navigate to user screen, not the last screen the user was on in the stack
+    const handleSettings = () => {
+        navigation.navigate('ProfileStack', {screen: 'User'})
+    }
+
     return (
         <View>
             <Appbar.Header 
-                statusBarHeight={100} 
+                statusBarHeight="12%"
                 style={{backgroundColor: "white"}}>
             </Appbar.Header>
             <Appbar style={styles.MapHeader}>
             <View style={styles.MapControls}>
-                <TouchableOpacity title="Back" onPress={()=>{alert("home page")}}>
-                    <Image
-                        style={styles.button}
-                        source={require("../../assets/back-arrow.png")}
+                <TouchableOpacity title="Back" onPress={handleBack}>
+                    <Icon
+                        name="arrow-left-circle"
+                        type="material-community"
+                        color="#FF676F"
+                        size={40}
+                        containerStyle={styles.iconContainer}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity title="Settings" onPress={()=>{alert("settings")}}>
-                    <Image 
-                        style={styles.button}
-                        source={require("../../assets/settings.png")}
+                <TouchableOpacity title="Settings" onPress={handleSettings}>
+                    <Icon
+                        name="cog-outline"
+                        type="material-community"
+                        color="#FF676F"
+                        size={40}
+                        containerStyle={styles.iconContainer}
                     />
                 </TouchableOpacity>
             </View>

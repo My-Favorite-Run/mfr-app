@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View} from 'react-native'
-import {Icon} from 'react-native-elements'
+import {FAB} from 'react-native-elements'
 
 //import Components
 import Map from './screens/Map'
@@ -25,8 +25,9 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 
 //import font
-import { useFonts, Barlow } from '@expo-google-fonts/barlow';
-//import { Icon } from 'react-native-elements/dist/icons/Icon';
+import * as Font from 'expo-font';
+import { useFonts, Barlow } from 'expo-font';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 const Tab = createBottomTabNavigator()
 const ProfileStack = createNativeStackNavigator()
@@ -36,8 +37,8 @@ const HomeStack = createNativeStackNavigator()
 function HomeStackNav() {
   return(
     <HomeStack.Navigator
-      screenOptions={{headerShown: false}}
-      initialRouteName="Home"
+    screenOptions={{headerShown: false}}
+    initialRouteName="Home"
     >
       <HomeStack.Screen name="Home" component={Home}/>
       <HomeStack.Screen name="Notifications" component={Notifications}/>
@@ -49,10 +50,10 @@ function HomeStackNav() {
 //Profile stack
 function ProfileStackNav() {
   return (
-      <ProfileStack.Navigator 
-        screenOptions={{headerShown: false}}
-        initialRouteName="User"
-      >
+    <ProfileStack.Navigator 
+    screenOptions={{headerShown: false}}
+    initialRouteName="User"
+    >
         <ProfileStack.Screen name="User" component={User} />
         <ProfileStack.Screen name="Profile" component={Profile}/>
         <ProfileStack.Screen name="Notifications" component={Notifications}/>
@@ -71,44 +72,82 @@ export default function App() {
           tabBarOptions={{
             activeTintColor: '#FF676F',
             inactiveTintColor: '#B5B5B5',
+            showLabel: false,
             style: {
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
             }
           }}
-        >
+          >
           <Tab.Screen
             name="HomeStack"
             component={HomeStackNav}
+            // when home icon pressed, always navigate to home screen, not the last screen the user was on in the stack
+            listeners={({navigation}) => ({
+              tabPress: (e) => {
+                e.preventDefault();
+                navigation.navigate("Home")
+              }
+            })}
             
             options={{
-              tabBarLabel: 'Home',
               tabBarIcon: ({color, size}) => (
                 <MaterialCommunityIcons name="home-heart" size={size} color={color} />
-              ),
-            }}
+                ),
+              }}
             />
-
-          <Tab.Screen 
-            name="Map"
-            component={Map}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="map" size={size} color={color} />
-              )
-            }}
-          />
           <Tab.Screen
              name="Calendar"
              component={Calendar}
              options={{
-               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="calendar" size={size} color={color} />
+                tabBarIcon: ({ color, size }) => (
+                  <MaterialCommunityIcons name="calendar" size={size} color={color} />
+                 )
+              }}
+          />
+          <Tab.Screen
+            name="Add"
+            component={Map}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <View
+                  style={{
+                    position: 'absolute',
+                    bottom: 25,
+                    height: 50,
+                    width: 50,
+                    borderRadius: 25,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: "#F4F4F4",
+                  }}
+                >
+                  <MaterialCommunityIcons name="plus-circle" size={40} color="#FF676F"/>
+                </View>
               )
             }}
           />
+          <Tab.Screen 
+            name="Map2"
+            component={Map}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="account-group" size={size} color={color} />
+                )
+              }}
+          />
+          <Tab.Screen
+             name="Mindset"
+             component={Calendar}
+             options={{
+               tabBarIcon: ({ color, size }) => (
+                 <MaterialCommunityIcons name="head-heart-outline" size={size} color={color} />
+                 )
+                }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
+                
     </Provider>
   )
 }

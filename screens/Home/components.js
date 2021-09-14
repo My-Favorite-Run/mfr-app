@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { View, Text, Image, Alert } from 'react-native'
-import { Button, Icon, Card } from 'react-native-elements'
+import { Button, Icon, Card, FAB } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles'
@@ -11,6 +11,7 @@ export const Header = () => {
     const handleNotif = () => {
         navigation.navigate('Notifications')
     }
+    // when profile icon pressed, always navigate to user screen, not the last screen the user was on in the stack
     const handleSettings = () => {
         navigation.navigate('ProfileStack', {screen: 'User'})
     }
@@ -33,6 +34,105 @@ export const Header = () => {
                 onPress={handleSettings}
             />
         </View>
+    )
+}
+
+export const DistanceInfo = () => {
+    return(
+        <View style={styles.distanceContainer}>
+            <Icon
+                name="shoe-print"
+                type="material-community"
+                color="#FFFFFF"
+                size={60}
+            />
+            <Text style={styles.distanceNum}>
+                0
+            </Text>
+            <Text style={styles.distanceText}>
+                Miles
+            </Text>
+        </View>
+    )
+}
+
+export const SpeedInfo = () => {
+    return(
+        <View style={styles.speedTimeContainer}>
+            <View style={styles.speedTimeIcon}>
+                <Icon
+                    name="run-fast"
+                    type="material-community"
+                    color="#FFFFFF"
+                    size={35}
+                />
+            </View>
+            <Text style={styles.speedTimeNum}>
+                0
+            </Text>
+            <Text style={styles.speedTimeText}>
+                MPH
+            </Text>
+
+        </View>
+    )
+}
+
+export const TimeInfo = () => {
+    return(
+        <View style={styles.speedTimeContainer}>
+            <View style={styles.speedTimeIcon}>
+                <Icon
+                    name="timer-sand"
+                    type="material-community"
+                    color="#FFFFFF"
+                    size={35}
+                />
+            </View>
+            <Text style={styles.speedTimeNum}>
+                0
+            </Text>
+            <Text style={styles.speedTimeText}>
+                Minutes
+            </Text>
+
+        </View>
+    )
+}
+
+export const MapView = () => {
+    return(
+        <View style={styles.mapContainer}>
+            <Text>
+                Map
+            </Text>
+        </View>
+    )
+}
+
+export const AddButton = () => {
+    const navigation = useNavigation();
+
+    const handleAdd = () => {
+        navigation.navigate('Map')
+    } 
+    return(
+        <Icon
+            name="plus-circle"
+            type="material-community"
+            color="#FF676F"
+            size={50}
+            onPress={handleAdd}
+            containerStyle={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                textAlign: "center",
+                justifyContent: "center",
+                alignSelf: "center", 
+            }
+            }
+        />
     )
 }
 
